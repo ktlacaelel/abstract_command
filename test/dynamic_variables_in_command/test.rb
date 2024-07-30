@@ -1,4 +1,4 @@
-require './lib/abstract_command'
+require 'abstract_command'
 
 class VarsCommand < AbstractCommand
   def template

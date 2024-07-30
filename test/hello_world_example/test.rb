@@ -1,4 +1,4 @@
-require './lib/abstract_command.rb'
+require 'abstract_command'
 
 # Hello World Example.
 class HelloCommand < AbstractCommand

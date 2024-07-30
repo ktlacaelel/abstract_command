@@ -1,6 +1,5 @@
 require 'open3'
 require 'shellwords'
-require './lib/formatter.rb'
 
 # Shell Command Abstraction.
 #
@@ -24,6 +23,21 @@ require './lib/formatter.rb'
 # - Avoids changes in the standared libarary: system, backtick, etc.
 #
 class AbstractCommand
+
+  # before ruby 1.9.1 the format method does not support
+  # the syntax we want, so we have a simplified version of
+  # format for older versions of ruby.
+  # its placed in the AbstractCommand class because we want
+  # to avoid possible collisions for people requiring our code.
+  # It can live on a better place though..
+  class Formatter
+    REGEXP = /(%<)(\S+)(>\w)/
+    def self.format(template, params)
+      template.gsub(REGEXP) do
+        params[$2.to_sym]
+      end
+    end
+  end
 
   # '%<name>s'.scan(/(%<)(\w+)(>)/)
   # => [["%<", "name", ">"]]
