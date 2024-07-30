@@ -1,0 +1,3 @@
+echo Hello Kazu
+Hello Kazu
+true

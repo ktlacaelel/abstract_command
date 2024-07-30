@@ -1,5 +1,6 @@
 require 'open3'
 require 'shellwords'
+require './lib/formatter.rb'
 
 # Shell Command Abstraction.
 #
@@ -57,6 +58,14 @@ class AbstractCommand
       bindings[variable.to_sym] = "#{value}".shellescape
     end
     format(template, bindings)
+  end
+
+  def format(template, bindings)
+    if RUBY_VERSION <= '1.9.1'
+      Formatter.format(template, bindings)
+    else
+      super(template, bindings)
+    end
   end
 
   def system

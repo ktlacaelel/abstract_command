@@ -1,0 +1,3 @@
+echo Hello \;\ touch\ /tmp/x
+Hello ; touch /tmp/x
+true

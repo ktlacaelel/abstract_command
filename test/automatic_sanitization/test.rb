@@ -1,0 +1,13 @@
+require './lib/abstract_command.rb'
+
+module Command
+  class Hello < AbstractCommand
+    def template
+      'echo Hello %<name>s'
+    end
+  end
+end
+
+command = Command::Hello.new(:name => '; touch /tmp/x')
+puts command.to_s
+puts command.system

@@ -1,0 +1,4 @@
+echo Hello world
+Hello world
+true
+Hello world
